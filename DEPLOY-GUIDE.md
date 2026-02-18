@@ -1,4 +1,4 @@
-# 🚀 Guia de Deploy e Divulgação - V.I.V.A. Score v0.2
+# 🚀 Guia de Deploy e Divulgação - PRISMA
 
 ## 📦 Parte 1: Colocar Online (Deploy)
 
@@ -52,9 +52,13 @@
 
 **Pronto! Seu link será:**
 ```
-https://viva-score-v2.vercel.app
+https://prisma-score.vercel.app
 ```
-(ou o nome customizado que você escolher)
+
+**URLs disponíveis:**
+- https://prisma-score.vercel.app (principal)
+- https://diagnostico-prisma.vercel.app
+- https://prisma-diagnostico.vercel.app
 
 ---
 

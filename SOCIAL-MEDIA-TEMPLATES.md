@@ -1,10 +1,10 @@
-# 📱 Templates de Redes Sociais - V.I.V.A. Score
+# 📱 Templates de Redes Sociais - PRISMA
 
 ## 🔵 LinkedIn Posts
 
 ### Post 1: Lançamento
 ```
-🚀 Acabei de lançar o V.I.V.A. Score v0.2 - Calculadora GRATUITA para validar projetos de IA
+🚀 Acabei de lançar o PRISMA v0.2 - Calculadora GRATUITA para validar projetos de IA
 
 O problema: 70% dos projetos de IA falham por falta de planejamento estruturado.
 
@@ -26,14 +26,14 @@ Dimensões avaliadas:
 
 É 100% gratuito, sem cadastro.
 
-Testa aí e me conta o resultado: [SEU-LINK]
+Testa aí e me conta o resultado: https://prisma-score.vercel.app
 
 #InteligenciaArtificial #Startups #Empreendedorismo #IA #Innovation #ProductDevelopment
 ```
 
 ### Post 2: Case Study (usar depois de ter dados)
 ```
-Analisei 50 projetos de IA no V.I.V.A. Score. Os resultados são surpreendentes:
+Analisei 50 projetos de IA no PRISMA. Os resultados são surpreendentes:
 
 📈 Projetos com score 30+:
 • 80% conseguiram funding
@@ -46,7 +46,7 @@ Analisei 50 projetos de IA no V.I.V.A. Score. Os resultados são surpreendentes:
 
 A diferença? Planejamento estruturado.
 
-Valide seu projeto gratuitamente: [LINK]
+Valide seu projeto gratuitamente: https://prisma-score.vercel.app
 
 Qual foi seu score? Comenta aí! 👇
 
@@ -55,7 +55,7 @@ Qual foi seu score? Comenta aí! 👇
 
 ### Post 3: Technical (para devs)
 ```
-Stack do V.I.V.A. Score v0.2:
+Stack do PRISMA v0.2:
 
 Frontend:
 • Next.js 16 (App Router)
@@ -74,7 +74,7 @@ Features:
 ✅ Classificação automática em 4 faixas
 ✅ Análise estruturada via LLM
 
-Open-source em breve. Enquanto isso, teste: [LINK]
+Open-source em breve. Enquanto isso, teste: https://prisma-score.vercel.app
 
 #NextJS #React #TailwindCSS #ClaudeAI #WebDev
 ```
@@ -92,7 +92,7 @@ Como funciona:
 • Score 0-40 + análise detalhada
 • 3 riscos + 3 próximos passos
 
-É grátis: [LINK]
+É grátis: https://prisma-score.vercel.app
 
 Testei com 10 projetos reais. Os que ficaram 30+ conseguiram funding.
 
@@ -111,14 +111,14 @@ Mas por:
 
 Criei uma ferramenta que identifica isso ANTES de você gastar $$$
 
-Valide seu projeto: [LINK]
+Valide seu projeto: https://prisma-score.vercel.app
 
 É grátis e leva 4min ⏱️
 ```
 
 ### Tweet 3: Thread
 ```
-[1/6] Lancei o V.I.V.A. Score - validador de projetos de IA
+[1/6] Lancei o PRISMA - validador de projetos de IA
 
 O que aprendi analisando 50+ projetos:
 
@@ -160,7 +160,7 @@ Bloqueadores identificados cedo = menos surpresas
 
 [6/6] Criei uma ferramenta que analisa essas 4 dimensões automaticamente.
 
-É grátis e leva 4min: [LINK]
+É grátis e leva 4min: https://prisma-score.vercel.app
 
 Qual dimensão vocês acham mais crítica? 👇
 ```
@@ -187,7 +187,7 @@ Você responde 8 perguntas (~4min) e recebe:
 • 3 riscos críticos
 • 3 próximos passos
 
-Link: [SEU-LINK]
+Link: https://prisma-score.vercel.app
 
 É 100% gratuito, sem cadastro.
 
@@ -206,14 +206,14 @@ Olá [Nome],
 
 Meu nome é [Seu Nome] e desenvolvi uma ferramenta que pode ser útil para sua aceleradora.
 
-O V.I.V.A. Score é uma calculadora que valida projetos de IA em 4 dimensões (Visão, Integração, Viabilidade, Execução), gerando um score de 0-40 + análise detalhada.
+O PRISMA é uma calculadora que valida projetos de IA em 4 dimensões (Visão, Integração, Viabilidade, Execução), gerando um score de 0-40 + análise detalhada.
 
 Acredito que pode ajudar seu time a:
 • Avaliar aplicações rapidamente
 • Identificar gaps em projetos do portfólio
 • Estruturar feedback para founders
 
-A ferramenta é gratuita: [LINK]
+A ferramenta é gratuita: https://prisma-score.vercel.app
 
 Gostaria de uma demo ou conversar sobre como ela pode ser útil para vocês?
 
@@ -231,7 +231,7 @@ Sou desenvolvedor e fã do seu conteúdo sobre [tema].
 
 Criei uma ferramenta que valida projetos de IA em 4 minutos, algo que acho que seu público adoraria testar.
 
-É gratuita e já foi usada por X pessoas: [LINK]
+É gratuita e já foi usada por X pessoas: https://prisma-score.vercel.app
 
 Você teria interesse em dar uma olhada e, se gostar, compartilhar com sua audiência? Posso preparar algum material específico se ajudar.
 
@@ -249,7 +249,7 @@ Obrigado pelo tempo!
 ```
 👋 Hey Product Hunt!
 
-I'm excited to share V.I.V.A. Score - a free tool I built to help validate AI projects before investing time and money.
+I'm excited to share PRISMA - a free tool I built to help validate AI projects before investing time and money.
 
 🎯 Why I built this:
 I saw too many founders (including myself) jumping into AI projects without proper validation. 70% fail due to poor planning, not bad tech.
@@ -283,7 +283,7 @@ Try it: [YOUR-LINK]
 "E aí, pessoal! Hoje vou mostrar uma ferramenta que criei para validar projetos de IA em 4 minutos."
 
 [0:15] Problema
-"Sabe aquele projeto de IA que você quer fazer mas não sabe se vai dar certo? É exatamente isso que o V.I.V.A. Score resolve."
+"Sabe aquele projeto de IA que você quer fazer mas não sabe se vai dar certo? É exatamente isso que o PRISMA resolve."
 
 [0:30] Demo Step 1
 "Primeiro, você coloca o nome do projeto e descreve o problema que ele resolve..."
@@ -359,7 +359,7 @@ You answer 8 questions about your project and get:
 - 3 critical risks
 - 3 action steps
 
-It's free: [LINK]
+It's free: https://prisma-score.vercel.app
 
 Not trying to sell anything - genuinely want feedback. What am I missing?
 ```
@@ -370,12 +370,12 @@ Not trying to sell anything - genuinely want feedback. What am I missing?
 
 **Bio para todas redes:**
 ```
-🚀 Builder | Created V.I.V.A. Score - Free AI project validator
+🚀 Builder | Created PRISMA - Free AI project validator
 ```
 
 **Link na bio:**
 ```
-🔗 Validate your AI project: [SEU-LINK]
+🔗 Validate your AI project: https://prisma-score.vercel.app
 ```
 
 **Hashtags para LinkedIn:**
