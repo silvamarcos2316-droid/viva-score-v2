@@ -1,5 +1,11 @@
 // VIVA Score Types
 export interface FormData {
+  // Step 0: Lead Capture
+  fullName?: string
+  email?: string
+  phone?: string
+  company?: string
+
   // Step 1: Visão
   projectName: string
   problemStatement: string

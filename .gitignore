@@ -44,3 +44,14 @@ next-env.d.ts
 
 # tracking data
 /data/
+
+# Integration secrets and test outputs
+test-webhooks-output.log
+webhook-test-results.json
+*.backup
+.env.backup
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
