@@ -8,11 +8,11 @@ interface ProgressBarProps {
 }
 
 const steps = [
-  { number: 0, label: 'Contato', icon: User },
-  { number: 1, label: 'Visão', icon: Eye },
-  { number: 2, label: 'Integração', icon: Boxes },
-  { number: 3, label: 'Viabilidade', icon: DollarSign },
-  { number: 4, label: 'Execução', icon: Zap },
+  { number: 0, label: 'Contato', icon: User, bgColor: 'bg-violet-600', textColor: 'text-violet-400', ringColor: 'ring-violet-600/30' },
+  { number: 1, label: 'Visão', icon: Eye, bgColor: 'bg-blue-600', textColor: 'text-blue-400', ringColor: 'ring-blue-600/30' },
+  { number: 2, label: 'Integração', icon: Boxes, bgColor: 'bg-green-600', textColor: 'text-green-400', ringColor: 'ring-green-600/30' },
+  { number: 3, label: 'Viabilidade', icon: DollarSign, bgColor: 'bg-yellow-600', textColor: 'text-yellow-400', ringColor: 'ring-yellow-600/30' },
+  { number: 4, label: 'Execução', icon: Zap, bgColor: 'bg-orange-600', textColor: 'text-orange-400', ringColor: 'ring-orange-600/30' },
 ]
 
 export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
@@ -30,7 +30,7 @@ export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
         </div>
         <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-500 ease-out"
+            className="h-full bg-gradient-to-r from-violet-600 via-blue-600 via-green-600 via-yellow-600 to-orange-600 transition-all duration-500 ease-out"
             style={{ width: `${((currentStep + 1) / (totalSteps + 1)) * 100}%` }}
           />
         </div>
@@ -52,8 +52,8 @@ export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
                   className={`
                   w-12 h-12 rounded-full flex items-center justify-center
                   font-bold text-sm transition-all duration-300 relative
-                  ${isCompleted ? 'bg-blue-600 text-white' : ''}
-                  ${isActive ? 'bg-blue-600 text-white ring-4 ring-blue-600/30 scale-110' : ''}
+                  ${isCompleted ? step.bgColor + ' text-white' : ''}
+                  ${isActive ? step.bgColor + ' text-white ring-4 ' + step.ringColor + ' scale-110' : ''}
                   ${isUpcoming ? 'bg-slate-800 text-slate-500 border-2 border-slate-700' : ''}
                 `}
                 >
@@ -78,7 +78,7 @@ export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
                 <span
                   className={`
                   mt-2 text-xs font-medium transition-all duration-300
-                  ${isActive || isCompleted ? 'text-blue-400' : 'text-slate-500'}
+                  ${isActive || isCompleted ? step.textColor : 'text-slate-500'}
                 `}
                 >
                   {step.label}

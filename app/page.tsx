@@ -115,49 +115,49 @@ export default function LandingPage() {
           {/* CTA Bifurcado */}
           <motion.div variants={itemVariants} className="text-center mb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {/* Path 1: Iniciante - Filtro de Lucidez */}
-              <div className="bg-slate-900/50 backdrop-blur-sm border-2 border-blue-500 rounded-sm p-8 flex flex-col">
+              {/* Path 1: Filtro de Lucidez - Violeta */}
+              <div className="bg-gradient-to-br from-violet-900/30 to-purple-900/30 backdrop-blur-sm border-2 border-violet-500/50 rounded-lg p-8 flex flex-col hover:border-violet-400 transition-all">
                 <div className="mb-4">
-                  <div className="text-blue-400 text-sm font-semibold mb-2 uppercase tracking-wider">Filtro de Lucidez</div>
+                  <div className="text-violet-300 text-sm font-semibold mb-2 uppercase tracking-wider">Filtro de Lucidez</div>
                   <h3 className="text-2xl font-bold text-white mb-3">
                     Você está no hype ou tem problema real?
                   </h3>
-                  <p className="text-slate-400 leading-relaxed mb-6">
+                  <p className="text-slate-300 leading-relaxed mb-6">
                     5 perguntas pra descobrir se você precisa de IA ou só de automação simples
                   </p>
                 </div>
                 <Link
                   href="/filtro-lucidez"
-                  className="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-sm text-base font-semibold hover:bg-blue-700 transition-all border border-blue-500"
+                  className="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg text-base font-semibold hover:from-violet-500 hover:to-purple-500 transition-all"
                 >
                   Fazer o filtro
                   <ArrowRight className="w-5 h-5" />
                 </Link>
-                <p className="text-slate-600 mt-3 text-xs text-center">
+                <p className="text-slate-500 mt-3 text-xs text-center">
                   A maioria não precisa • Recomendação honesta • 2 minutos
                 </p>
               </div>
 
-              {/* Path 2: Avançado - V.I.V.A. */}
-              <div className="bg-slate-900/50 backdrop-blur-sm border-2 border-slate-700 rounded-sm p-8 flex flex-col">
+              {/* Path 2: PRISMA Full - Rainbow */}
+              <div className="bg-gradient-to-br from-blue-900/30 via-green-900/30 to-yellow-900/30 backdrop-blur-sm border-2 border-blue-500/50 rounded-lg p-8 flex flex-col hover:border-green-400 transition-all">
                 <div className="mb-4">
-                  <div className="text-slate-400 text-sm font-semibold mb-2 uppercase tracking-wider">Diagnóstico Completo</div>
+                  <div className="text-blue-300 text-sm font-semibold mb-2 uppercase tracking-wider">PRISMA Full</div>
                   <h3 className="text-2xl font-bold text-white mb-3">
-                    Já sei o que quero validar
+                    Análise completa em 4 dimensões
                   </h3>
-                  <p className="text-slate-400 leading-relaxed mb-6">
-                    Tenho um projeto de IA definido e quero validar viabilidade técnica e estratégica
+                  <p className="text-slate-300 leading-relaxed mb-6">
+                    Validação técnica e estratégica com score objetivo 0-40
                   </p>
                 </div>
                 <Link
                   href="/calculator"
-                  className="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-800 text-white rounded-sm text-base font-semibold hover:bg-slate-700 transition-all border border-slate-700"
+                  className="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 text-white rounded-lg text-base font-semibold hover:from-blue-500 hover:via-green-500 hover:to-yellow-500 transition-all"
                 >
-                  Fazer V.I.V.A.
+                  Fazer diagnóstico
                   <ArrowRight className="w-5 h-5" />
                 </Link>
-                <p className="text-slate-600 mt-3 text-xs text-center">
-                  4 dimensões • Score 0-40 • 3 minutos
+                <p className="text-slate-500 mt-3 text-xs text-center">
+                  Visão • Integração • Viabilidade • Execução • 3 minutos
                 </p>
               </div>
             </div>
