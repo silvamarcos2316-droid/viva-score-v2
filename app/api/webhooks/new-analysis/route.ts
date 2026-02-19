@@ -141,7 +141,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate WhatsApp message
-    const whatsappMessage = generateAnalysisMessage(leadData, analysis)
+    const whatsappMessage = generateAnalysisMessage({
+      ...leadData,
+      company: leadData.company || undefined
+    }, analysis)
 
     // Prepare payload for n8n
     const n8nPayload = {
