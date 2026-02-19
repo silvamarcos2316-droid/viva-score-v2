@@ -145,7 +145,10 @@ export default function SinceraoPage() {
   const router = useRouter()
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
+  const [showDescriptionStep, setShowDescriptionStep] = useState(false)
+  const [activityDescription, setActivityDescription] = useState('')
   const [showResult, setShowResult] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
 
   useEffect(() => {
     trackPageView('/filtro-lucidez')
@@ -158,7 +161,50 @@ export default function SinceraoPage() {
     if (currentQuestion < questions.length - 1) {
       setTimeout(() => setCurrentQuestion(currentQuestion + 1), 300)
     } else {
+      // Última pergunta - ir para descrição livre
+      setTimeout(() => setShowDescriptionStep(true), 300)
+    }
+  }
+
+  const handleSubmitDescription = async () => {
+    if (!activityDescription.trim()) {
+      alert('Por favor, descreva sua atividade para continuar')
+      return
+    }
+
+    setIsSaving(true)
+
+    try {
+      // Preparar dados para salvar
+      const submissionData = {
+        answers: answers,
+        activityDescription: activityDescription,
+        totalScore: totalScore,
+        maxScore: maxScore,
+        percentage: (totalScore / maxScore) * 100,
+        recommendation: getRecommendation().type,
+        timestamp: new Date().toISOString(),
+      }
+
+      // Salvar no endpoint de tracking
+      await fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'filtro_lucidez_completed',
+          timestamp: new Date().toISOString(),
+          data: submissionData,
+        }),
+      })
+
+      // Mostrar resultado
       setTimeout(() => setShowResult(true), 300)
+    } catch (error) {
+      console.error('Error saving submission:', error)
+      // Mostrar resultado mesmo se falhar o save
+      setTimeout(() => setShowResult(true), 300)
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -237,7 +283,7 @@ export default function SinceraoPage() {
           </p>
         </motion.div>
 
-        {!showResult ? (
+        {!showResult && !showDescriptionStep ? (
           <>
             {/* Progress */}
             <div className="mb-8">
@@ -307,6 +353,67 @@ export default function SinceraoPage() {
               </motion.div>
             </AnimatePresence>
           </>
+        ) : showDescriptionStep ? (
+          // Tela de descrição livre
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-slate-900 rounded-sm border border-slate-800 p-8 md:p-12"
+          >
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-violet-500/10 border-2 border-violet-500 mb-6">
+                <BookOpen className="w-8 h-8 text-violet-500" />
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Agora, nas suas palavras...
+              </h2>
+              <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
+                Descreva qual atividade você quer automatizar ou melhorar com IA. Seja específico sobre o que você faz hoje.
+              </p>
+            </div>
+
+            <div className="max-w-3xl mx-auto">
+              <textarea
+                value={activityDescription}
+                onChange={(e) => setActivityDescription(e.target.value)}
+                placeholder="Exemplo: Hoje eu recebo emails de clientes pedindo orçamento, leio cada um, copio os dados pra planilha, busco o produto no sistema, calculo o preço e respondo o email. Isso toma umas 2 horas por dia..."
+                className="w-full h-48 bg-slate-800 border-2 border-slate-700 rounded-sm p-6 text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 transition-colors resize-none"
+                autoFocus
+              />
+
+              <div className="text-sm text-slate-400 mt-3 mb-8">
+                💡 Dica: Quanto mais detalhes você der, melhor conseguimos te ajudar depois
+              </div>
+
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setShowDescriptionStep(false)}
+                  className="flex-1 px-6 py-4 bg-slate-800 text-white rounded-sm font-semibold hover:bg-slate-700 transition-all border border-slate-700"
+                >
+                  Voltar
+                </button>
+
+                <button
+                  onClick={handleSubmitDescription}
+                  disabled={isSaving || !activityDescription.trim()}
+                  className="flex-1 px-6 py-4 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-sm font-semibold hover:from-violet-500 hover:to-purple-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                >
+                  {isSaving ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                      Salvando...
+                    </>
+                  ) : (
+                    <>
+                      Ver meu resultado
+                      <ArrowRight className="w-5 h-5" />
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </motion.div>
         ) : (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -493,12 +600,27 @@ export default function SinceraoPage() {
               )}
             </div>
 
+            {/* Activity Description Display */}
+            {activityDescription && (
+              <div className="bg-slate-800/50 rounded-sm p-6 mb-8 border border-slate-700">
+                <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-violet-400" />
+                  Sua atividade descrita:
+                </h4>
+                <p className="text-slate-300 italic leading-relaxed">
+                  "{activityDescription}"
+                </p>
+              </div>
+            )}
+
             {/* Footer Actions */}
             <div className="border-t border-slate-800 pt-6 text-center">
               <button
                 onClick={() => {
                   setCurrentQuestion(0)
                   setAnswers({})
+                  setActivityDescription('')
+                  setShowDescriptionStep(false)
                   setShowResult(false)
                 }}
                 className="text-slate-400 hover:text-white transition-colors flex items-center gap-2 mx-auto"
