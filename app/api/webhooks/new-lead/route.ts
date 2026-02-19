@@ -80,7 +80,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate welcome WhatsApp message
-    const whatsappMessage = generateWelcomeMessage(leadData)
+    const whatsappMessage = generateWelcomeMessage({
+      ...leadData,
+      company: leadData.company || undefined
+    })
 
     // Prepare payload for n8n
     const n8nPayload = {
