@@ -233,7 +233,7 @@ export async function buscarAnalisesAvancadas(filters: {
 // EXEMPLO 8: Estatísticas Agregadas
 // ============================================
 
-export async function getEstatis statistics() {
+export async function getStatistics() {
   try {
     // Total de análises
     const { count: totalAnalyses } = await supabaseAdmin
