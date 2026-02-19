@@ -112,18 +112,55 @@ export default function LandingPage() {
             </div>
           </motion.div>
 
-          {/* CTA Principal */}
+          {/* CTA Bifurcado */}
           <motion.div variants={itemVariants} className="text-center mb-20">
-            <Link
-              href="/calculator"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-sm text-lg font-semibold hover:bg-blue-700 transition-all border border-blue-500"
-            >
-              Analisar meu projeto agora
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <p className="text-slate-500 mt-4 text-sm">
-              Sem cadastro • Score 0-40 • 3 minutos
-            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {/* Path 1: Iniciante - Filtro de Lucidez */}
+              <div className="bg-slate-900/50 backdrop-blur-sm border-2 border-blue-500 rounded-sm p-8 flex flex-col">
+                <div className="mb-4">
+                  <div className="text-blue-400 text-sm font-semibold mb-2 uppercase tracking-wider">Filtro de Lucidez</div>
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    Você está no hype ou tem problema real?
+                  </h3>
+                  <p className="text-slate-400 leading-relaxed mb-6">
+                    5 perguntas pra descobrir se você precisa de IA ou só de automação simples
+                  </p>
+                </div>
+                <Link
+                  href="/filtro-lucidez"
+                  className="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-sm text-base font-semibold hover:bg-blue-700 transition-all border border-blue-500"
+                >
+                  Fazer o filtro
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <p className="text-slate-600 mt-3 text-xs text-center">
+                  A maioria não precisa • Recomendação honesta • 2 minutos
+                </p>
+              </div>
+
+              {/* Path 2: Avançado - V.I.V.A. */}
+              <div className="bg-slate-900/50 backdrop-blur-sm border-2 border-slate-700 rounded-sm p-8 flex flex-col">
+                <div className="mb-4">
+                  <div className="text-slate-400 text-sm font-semibold mb-2 uppercase tracking-wider">Diagnóstico Completo</div>
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    Já sei o que quero validar
+                  </h3>
+                  <p className="text-slate-400 leading-relaxed mb-6">
+                    Tenho um projeto de IA definido e quero validar viabilidade técnica e estratégica
+                  </p>
+                </div>
+                <Link
+                  href="/calculator"
+                  className="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-800 text-white rounded-sm text-base font-semibold hover:bg-slate-700 transition-all border border-slate-700"
+                >
+                  Fazer V.I.V.A.
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <p className="text-slate-600 mt-3 text-xs text-center">
+                  4 dimensões • Score 0-40 • 3 minutos
+                </p>
+              </div>
+            </div>
           </motion.div>
 
           {/* Stats */}
