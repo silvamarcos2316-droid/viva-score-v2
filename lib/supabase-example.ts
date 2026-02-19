@@ -84,7 +84,6 @@ export async function salvarAnalise(formData: any, analysis: any) {
       missing_info: analysis.missingInfo,
       full_analysis_text: JSON.stringify(analysis),
       model_used: 'claude-opus-4.6',
-      status: 'completed',
     })
 
     console.log('Análise salva:', savedAnalysis.id)
