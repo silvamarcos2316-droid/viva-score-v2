@@ -1,7 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
-import { existsSync } from 'fs'
-import path from 'path'
 
 export const runtime = 'nodejs'
 
@@ -42,25 +39,26 @@ export async function POST(request: NextRequest) {
   try {
     const submission: AnalysisSubmission = await request.json()
 
-    // Create data directory if it doesn't exist
-    const dataDir = path.join(process.cwd(), 'data', 'analyses')
-    if (!existsSync(dataDir)) {
-      await mkdir(dataDir, { recursive: true })
-    }
+    // TODO: Save to Supabase analyses table
+    // For now, just log the submission (filesystem operations don't work on Vercel)
+    console.log('[Track Analysis] Submission received:', {
+      id: submission.id,
+      timestamp: submission.timestamp,
+      projectName: submission.formData?.projectName,
+      score: submission.analysis?.scores?.total,
+      classification: submission.analysis?.classification,
+    })
 
-    // Save analysis to file (one file per submission)
-    const filename = path.join(dataDir, `analysis-${submission.id}.json`)
-    await writeFile(filename, JSON.stringify(submission, null, 2))
-
-    // Also append to daily log for easy querying
-    const date = new Date().toISOString().split('T')[0]
-    const logFilename = path.join(dataDir, `analyses-${date}.jsonl`)
-    const logLine = JSON.stringify(submission) + '\n'
-    await writeFile(logFilename, logLine, { flag: 'a' })
-
-    return NextResponse.json({ success: true, id: submission.id })
+    return NextResponse.json({
+      success: true,
+      id: submission.id,
+      message: 'Analysis tracking temporarily disabled - will be migrated to Supabase'
+    })
   } catch (error) {
-    console.error('Analysis tracking error:', error)
-    return NextResponse.json({ success: false, error: 'Failed to track analysis' }, { status: 500 })
+    console.error('[Track Analysis] Error:', error)
+    return NextResponse.json({
+      success: false,
+      error: 'Failed to track analysis'
+    }, { status: 500 })
   }
 }

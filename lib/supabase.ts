@@ -6,16 +6,17 @@
 import { createClient } from '@supabase/supabase-js'
 
 // Validar variáveis de ambiente
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key'
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
-if (!supabaseUrl) {
-  throw new Error('Missing env.NEXT_PUBLIC_SUPABASE_URL')
+// Log warning if using placeholder values
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+  console.warn('[Supabase] Warning: NEXT_PUBLIC_SUPABASE_URL not configured, using placeholder')
 }
 
-if (!supabaseAnonKey) {
-  throw new Error('Missing env.NEXT_PUBLIC_SUPABASE_ANON_KEY')
+if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  console.warn('[Supabase] Warning: NEXT_PUBLIC_SUPABASE_ANON_KEY not configured, using placeholder')
 }
 
 /**
