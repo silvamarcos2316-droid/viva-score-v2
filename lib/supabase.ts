@@ -55,3 +55,44 @@ export const isServer = typeof window === 'undefined'
 export function getSupabaseClient() {
   return isServer ? supabaseAdmin : supabase
 }
+
+/**
+ * Salvar lead no banco de dados
+ */
+export async function saveLeadToDatabase(data: {
+  fullName?: string
+  email?: string
+  phone?: string
+  company?: string
+}) {
+  try {
+    if (!data.email || !data.fullName) {
+      return false
+    }
+
+    const { error } = await supabase
+      .from('users')
+      .upsert(
+        {
+          name: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          company: data.company,
+          last_seen_at: new Date().toISOString(),
+        },
+        {
+          onConflict: 'email',
+        }
+      )
+
+    if (error) {
+      console.error('Error saving lead:', error)
+      return false
+    }
+
+    return true
+  } catch (err) {
+    console.error('Exception saving lead:', err)
+    return false
+  }
+}
