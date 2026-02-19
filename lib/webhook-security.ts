@@ -2,9 +2,8 @@
  * Webhook Security Utilities
  *
  * Provides signature verification and API key validation for webhook endpoints
+ * Uses Web Crypto API for Edge Runtime compatibility
  */
-
-import crypto from 'crypto'
 
 /**
  * Verify webhook signature from Supabase
@@ -14,20 +13,34 @@ import crypto from 'crypto'
  * @param secret - Webhook secret from environment
  * @returns boolean indicating if signature is valid
  */
-export function verifyWebhookSignature(
+export async function verifyWebhookSignature(
   payload: string,
   signature: string,
   secret: string
-): boolean {
+): Promise<boolean> {
   try {
-    const hmac = crypto.createHmac('sha256', secret)
-    const expectedSignature = hmac.update(payload).digest('hex')
-
-    // Use timing-safe comparison
-    return crypto.timingSafeEqual(
-      Buffer.from(signature),
-      Buffer.from(expectedSignature)
+    // Convert secret to crypto key
+    const encoder = new TextEncoder()
+    const keyData = encoder.encode(secret)
+    const key = await crypto.subtle.importKey(
+      'raw',
+      keyData,
+      { name: 'HMAC', hash: 'SHA-256' },
+      false,
+      ['sign']
     )
+
+    // Generate signature
+    const dataBuffer = encoder.encode(payload)
+    const signatureBuffer = await crypto.subtle.sign('HMAC', key, dataBuffer)
+
+    // Convert to hex string
+    const expectedSignature = Array.from(new Uint8Array(signatureBuffer))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('')
+
+    // Simple comparison (Web Crypto doesn't have timing-safe comparison)
+    return signature === expectedSignature
   } catch (error) {
     console.error('[Webhook Security] Signature verification failed:', error)
     return false
@@ -50,16 +63,6 @@ export function verifyApiKey(apiKey: string | null): boolean {
   ].filter(Boolean)
 
   return validApiKeys.includes(apiKey)
-}
-
-/**
- * Generate a secure API key
- * For use in generating new API keys for services
- *
- * @returns A secure random API key
- */
-export function generateApiKey(): string {
-  return crypto.randomBytes(32).toString('base64url')
 }
 
 /**

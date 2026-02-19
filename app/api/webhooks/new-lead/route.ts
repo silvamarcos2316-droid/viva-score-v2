@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     // Verify webhook signature (if configured)
     const webhookSecret = process.env.SUPABASE_WEBHOOK_SECRET
     if (webhookSecret && signature) {
-      const isValid = verifyWebhookSignature(rawBody, signature, webhookSecret)
+      const isValid = await verifyWebhookSignature(rawBody, signature, webhookSecret)
       if (!isValid) {
         console.error('[Webhook] Invalid signature')
         return NextResponse.json(
