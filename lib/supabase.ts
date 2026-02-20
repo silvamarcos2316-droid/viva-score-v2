@@ -5,10 +5,10 @@
 
 import { createClient } from '@supabase/supabase-js'
 
-// Validar variáveis de ambiente
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key'
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+// Validar variáveis de ambiente (trim para remover \n e outros caracteres extras)
+const supabaseUrl = (process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co').trim().replace(/\\n/g, '')
+const supabaseAnonKey = (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key').trim().replace(/\\n/g, '')
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim().replace(/\\n/g, '')
 
 // Log warning if using placeholder values
 if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {

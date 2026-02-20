@@ -5,7 +5,7 @@ import { saveLeadToDatabase } from '@/lib/supabase'
 export const runtime = 'edge'
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY!,
+  apiKey: process.env.ANTHROPIC_API_KEY!.trim().replace(/\\n/g, ''),
 })
 
 // Tool definition for structured data extraction
