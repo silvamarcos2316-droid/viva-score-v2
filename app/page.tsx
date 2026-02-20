@@ -140,7 +140,7 @@ export default function LandingPage() {
 
               {/* Path 2: PRISMA Full - Rainbow */}
               <div className="bg-gradient-to-br from-blue-900/30 via-green-900/30 to-yellow-900/30 backdrop-blur-sm border-2 border-blue-500/50 rounded-lg p-8 flex flex-col hover:border-green-400 transition-all">
-                <div className="mb-4">
+                <div className="mb-6">
                   <div className="text-blue-300 text-sm font-semibold mb-2 uppercase tracking-wider">PRISMA Full</div>
                   <h3 className="text-2xl font-bold text-white mb-3">
                     Análise completa em 4 dimensões
@@ -149,14 +149,29 @@ export default function LandingPage() {
                     Validação técnica e estratégica com score objetivo 0-40
                   </p>
                 </div>
-                <Link
-                  href="/calculator"
-                  className="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 text-white rounded-lg text-base font-semibold hover:from-blue-500 hover:via-green-500 hover:to-yellow-500 transition-all"
-                >
-                  Fazer diagnóstico
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <p className="text-slate-500 mt-3 text-xs text-center">
+
+                {/* Choice: Conversational or Form */}
+                <div className="mt-auto space-y-3">
+                  <Link
+                    href="/calculadora-chat"
+                    className="block w-full px-6 py-4 bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 text-white rounded-lg text-base font-semibold hover:from-blue-500 hover:via-green-500 hover:to-yellow-500 transition-all text-center"
+                  >
+                    <div className="flex items-center justify-center gap-3">
+                      <span>💬 Conversar com IA</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </div>
+                    <p className="text-sm text-white/70 mt-1">Recomendado • Mais natural</p>
+                  </Link>
+
+                  <Link
+                    href="/calculator"
+                    className="block w-full px-6 py-3 bg-slate-800/50 border border-slate-700 text-slate-300 rounded-lg text-sm font-medium hover:bg-slate-700/50 hover:border-slate-600 transition-all text-center"
+                  >
+                    Usar formulário tradicional
+                  </Link>
+                </div>
+
+                <p className="text-slate-500 mt-4 text-xs text-center">
                   Visão • Integração • Viabilidade • Execução • 3 minutos
                 </p>
               </div>
@@ -186,6 +201,110 @@ export default function LandingPage() {
             </div>
           </motion.div>
         </motion.div>
+      </div>
+
+      {/* Por Que PRISMA vs ChatGPT/Gemini */}
+      <div className="bg-slate-900 py-20 md:py-32 px-4">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Por Que PRISMA Em Vez de ChatGPT?
+            </h2>
+            <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+              Não é só outro chatbot. É metodologia validada que transforma sua ideia em score acionável — em minutos.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {/* ChatGPT/Gemini Column */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-slate-800/50 border border-slate-700 rounded-lg p-8"
+            >
+              <h3 className="text-2xl font-bold text-slate-300 mb-6 flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-slate-500"></div>
+                ChatGPT / Gemini / LLMs
+              </h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3 text-slate-400">
+                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
+                  <span>Resposta genérica e não estruturada</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-400">
+                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
+                  <span>Opinião baseada em dados gerais da internet</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-400">
+                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
+                  <span>Sem baseline de comparação com mercado</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-400">
+                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
+                  <span>Resposta em texto livre (não apresentável)</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-400">
+                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
+                  <span>Análise pontual sem continuidade</span>
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* PRISMA Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-blue-900/40 via-green-900/40 to-yellow-900/40 border-2 border-blue-500/50 rounded-lg p-8"
+            >
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+                PRISMA Score
+              </h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3 text-slate-200">
+                  <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <span><strong className="text-white">Framework proprietário</strong> validado em 150+ projetos</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-200">
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span><strong className="text-white">Score 0-40 objetivo</strong> e comparável entre projetos</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-200">
+                  <CheckCircle className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                  <span><strong className="text-white">Benchmarking implícito</strong> vs mercado brasileiro</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-200">
+                  <CheckCircle className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
+                  <span><strong className="text-white">Relatório executivo</strong> apresentável para stakeholders</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-200">
+                  <CheckCircle className="w-5 h-5 text-violet-400 flex-shrink-0 mt-0.5" />
+                  <span><strong className="text-white">Plataforma evolutiva</strong> com histórico e acompanhamento</span>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-slate-800/30 border border-slate-700 rounded-lg p-8 text-center"
+          >
+            <p className="text-lg text-slate-300 leading-relaxed">
+              <span className="text-blue-400 font-semibold">ChatGPT te dá opiniões.</span>{' '}
+              <span className="text-white font-semibold">PRISMA te dá diagnóstico estruturado</span>{' '}
+              com metodologia validada, score objetivo e roadmap acionável.
+            </p>
+          </motion.div>
+        </div>
       </div>
 
       {/* O Que É PRISMA */}
@@ -461,13 +580,25 @@ export default function LandingPage() {
             Framework estruturado de análise em quatro dimensões. Clareza objetiva para decisões complexas.
           </p>
 
-          <Link
-            href="/calculator"
-            className="inline-flex items-center gap-3 px-12 py-6 bg-blue-600 text-white rounded-sm text-xl font-semibold hover:bg-blue-700 transition-all border border-blue-500"
-          >
-            Analisar meu projeto agora
-            <ArrowRight className="w-6 h-6" />
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+            <Link
+              href="/calculadora-chat"
+              className="inline-flex items-center gap-3 px-12 py-6 bg-blue-600 text-white rounded-sm text-xl font-semibold hover:bg-blue-700 transition-all border border-blue-500"
+            >
+              💬 Conversar com IA
+              <ArrowRight className="w-6 h-6" />
+            </Link>
+            <Link
+              href="/calculator"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-slate-800 text-slate-300 rounded-sm text-base font-medium hover:bg-slate-700 transition-all border border-slate-700"
+            >
+              Usar formulário
+            </Link>
+          </div>
+
+          <p className="text-sm text-slate-500 mb-8">
+            ✨ Novo: Converse naturalmente com nosso assistente de IA
+          </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-8 text-slate-500 text-sm">
             <div className="flex items-center gap-2">
