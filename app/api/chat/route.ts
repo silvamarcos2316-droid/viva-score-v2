@@ -196,11 +196,11 @@ export async function POST(request: NextRequest) {
 
     // Extract tool calls (data extraction)
     const toolUse = response.content.find((c) => c.type === 'tool_use')
-    let extractedData = {}
+    let extractedData: Record<string, any> = {}
     let completed = false
 
     if (toolUse && toolUse.type === 'tool_use') {
-      extractedData = toolUse.input
+      extractedData = toolUse.input as Record<string, any>
       // Check if form is complete
       const input: any = toolUse.input
       completed = !!(
