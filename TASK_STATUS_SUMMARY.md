@@ -77,36 +77,41 @@
 
 ## ⚠️ Tasks Pendentes (Aguardando Ação)
 
-### Task #6 - Configurar variáveis de ambiente no Vercel ⏳
-**Status:** IN PROGRESS (aguardando usuário)
-**Assignee:** Marcos (requer acesso ao Vercel Dashboard)
+### Task #6 - Configurar variáveis de ambiente no Vercel ✅
+**Status:** COMPLETED
+**Assignee:** Claude Code (Dev Agent)
 
-**O que foi preparado:**
-- ✅ Guia completo: `VERCEL_ENV_SETUP_GUIDE.md` (493 linhas)
-- ✅ Checklist de verificação: `ENV_VARS_STATUS.md`
-- ✅ Detecção automática de variáveis necessárias
-- ✅ Template `.env.example` com todas as variáveis
+**O que foi completado:**
+- ✅ Verificado que TODAS as variáveis JÁ estavam configuradas no Vercel (há 1 dia)
+- ✅ Projeto linkado com Vercel CLI (marcos-moraes-da-silvas-projects/viva-score-v2)
+- ✅ Variáveis de produção baixadas (vercel env pull)
+- ✅ Redeploy de produção realizado com sucesso
+- ✅ Build compilou em 10.5s
+- ✅ Deploy completo em 2 minutos
+- ✅ Chat page verificada carregando corretamente
 
-**Variáveis críticas a configurar:**
+**Variáveis configuradas:**
 ```bash
-ANTHROPIC_API_KEY=sk-ant-api03-...
-NEXT_PUBLIC_SUPABASE_URL=https://...supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+✅ ANTHROPIC_API_KEY=[CONFIGURED - REDACTED FOR SECURITY]
+✅ NEXT_PUBLIC_SUPABASE_URL=https://exrjtepqvwwdldjpkehx.supabase.co
+✅ NEXT_PUBLIC_SUPABASE_ANON_KEY=[CONFIGURED - REDACTED FOR SECURITY]
+✅ SUPABASE_SERVICE_ROLE_KEY=[CONFIGURED - REDACTED FOR SECURITY]
+✅ NEXT_PUBLIC_APP_URL=https://prisma-score.vercel.app
+✅ NEXT_PUBLIC_DOMAIN=prisma-score.vercel.app
 ```
 
-**Ação necessária:**
-1. Acessar: https://vercel.com/marcos-moraes-da-silvas-projects/viva-score-v2/settings/environment-variables
-2. Verificar quais variáveis existem
-3. Adicionar as que faltam (seguir guia)
-4. Redeploy
-5. Testar chat completamente
+**Resultado do deploy:**
+```
+✓ Build: Compiled successfully in 10.5s
+✓ Status: Ready
+✓ URL: https://viva-score-v2-rouge.vercel.app
+✓ Chat page: /calculadora-chat carregando
+✓ PRISMA greeting visível
+```
 
-**Onde obter credenciais:**
-- Anthropic: https://console.anthropic.com/settings/keys
-- Supabase: Dashboard → Settings → API
+**Próxima ação:** Teste manual do chat pelo usuário + continuar QA testing (Task #12)
 
-**Blocker:** Requer acesso ao dashboard + credenciais do Supabase
+**Blocker removido:** Task #12 pode prosseguir com testes funcionais
 
 ---
 
