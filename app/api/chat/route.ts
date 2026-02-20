@@ -13,60 +13,60 @@ const extractDataTool = {
   name: 'extract_project_data',
   description: 'Extract structured project data from the conversation to update the PRISMA analysis form. Only call this when you have collected new information from the user.',
   input_schema: {
-    type: 'object',
+    type: 'object' as const,
     properties: {
       fullName: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Full name of the person (at least 3 characters)',
       },
       email: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Professional email address',
       },
       phone: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Phone/WhatsApp number in Brazilian format',
       },
       company: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Company name (optional)',
       },
       projectName: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Name of the AI project (at least 3 characters)',
       },
       problemStatement: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Detailed description of the problem the project solves (at least 50 characters)',
       },
       techStack: {
-        type: 'array',
-        items: { type: 'string' },
+        type: 'array' as const,
+        items: { type: 'string' as const },
         description: 'List of technologies/frameworks being used or considered',
       },
       integrationNeeds: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Description of integration needs with existing systems (at least 30 characters)',
       },
       budgetRange: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Monthly budget range (e.g., "2000-5000", "5000-10000", etc.)',
       },
       roiExpectation: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Expected ROI and business impact description (at least 30 characters)',
       },
       timeline: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Timeline for MVP delivery (e.g., "1-3 meses", "3-6 meses", etc.)',
       },
       blockers: {
-        type: 'string',
+        type: 'string' as const,
         description: 'Identified blockers and challenges (at least 20 characters)',
       },
     },
   },
-}
+} as const
 
 const systemPrompt = `Você é PRISMA, um assistente especializado em diagnosticar projetos de IA através de conversas naturais.
 
