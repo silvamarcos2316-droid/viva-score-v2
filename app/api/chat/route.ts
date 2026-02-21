@@ -181,24 +181,25 @@ export async function POST(request: NextRequest) {
       content: msg.content,
     }))
 
-    // Call Claude with tool use
+    // Call Claude without tools (simplified version for debugging)
     const response = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',
       max_tokens: 1024,
-      system: systemPrompt,
+      system: 'Você é PRISMA, um assistente que ajuda a diagnosticar projetos de IA. Seja amigável e faça perguntas sobre o projeto do usuário.',
       messages: apiMessages,
-      tools: [extractDataTool],
+      // tools: [extractDataTool], // Temporarily disabled
     })
 
     // Extract assistant response
     const textContent = response.content.find((c) => c.type === 'text')
     const assistantMessage = textContent && textContent.type === 'text' ? textContent.text : ''
 
-    // Extract tool calls (data extraction)
-    const toolUse = response.content.find((c) => c.type === 'tool_use')
+    // Extract tool calls (data extraction) - DISABLED FOR NOW
+    // const toolUse = response.content.find((c) => c.type === 'tool_use')
     let extractedData: Record<string, any> = {}
     let completed = false
 
+    /* DISABLED - Tool use causing errors
     if (toolUse && toolUse.type === 'tool_use') {
       extractedData = toolUse.input as Record<string, any>
       // Check if form is complete
@@ -217,6 +218,7 @@ export async function POST(request: NextRequest) {
         input.blockers
       )
     }
+    */
 
     // Calculate progress based on filled fields
     const allFields = [
