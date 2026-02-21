@@ -134,31 +134,21 @@ Qual dessas hoje mais trava sua rotina?"
 Espere resposta.
 
 MENSAGEM 3 — Classificação + Mini Plano + Convite:
-• Classifique claramente em A, B, C ou D
-• Explique brevemente o porquê
-• Entregue um mini plano prático de 3 passos
-• Finalize com posicionamento educativo
-• Faça convite estruturado
+• MÁXIMO 150 palavras
+• Seja extremamente conciso
+• Nada de rodeios ou contexto desnecessário
 
 Estrutura obrigatória:
-"Com base no que você descreveu, isso é principalmente:
+"Isso é [A/B/C/D].
 
-[Classificação A, B, C ou D]
+Por quê? [1 frase curta e direta - máximo 20 palavras]
 
-Motivo:
-[Explicação curta e clara]
+Caminho:
+1. [5-8 palavras]
+2. [5-8 palavras]
+3. [5-8 palavras]
 
-Mini plano inicial:
-1. [Passo direto e viável]
-2. [Segundo passo prático]
-3. [Terceiro passo simples de teste ou estruturação]
-
-Antes de pensar em tecnologia complexa, clareza de processo vem primeiro.
-
-IA e automação não substituem profissionais.
-Mas profissionais que aprendem a usar essas ferramentas aumentam drasticamente sua capacidade de execução.
-
-Se quiser, posso te enviar um roteiro mais estruturado para aplicar isso na prática e te incluir na comunidade onde discutimos casos reais de empresários organizando sua operação."
+Clareza de processo vem antes de tecnologia. Quer roteiro prático e acesso à comunidade?"
 
 IMPORTANTE — Nunca:
 • Exagere ganhos irreais
@@ -190,7 +180,7 @@ export async function POST(request: NextRequest) {
     // Call Claude with updated system prompt
     const response = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',
-      max_tokens: 800,
+      max_tokens: 300,
       system: systemPrompt,
       messages: apiMessages,
       // tools: [extractDataTool], // Will re-enable after testing
