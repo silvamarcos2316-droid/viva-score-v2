@@ -1,6 +1,7 @@
 'use client'
 
 import { User, Eye, Boxes, DollarSign, Zap } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 interface ProgressBarProps {
   currentStep: number
@@ -58,8 +59,11 @@ export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
                 `}
                 >
                   {isCompleted ? (
-                    <svg
+                    <motion.svg
                       className="w-6 h-6"
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -70,7 +74,7 @@ export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
                         strokeWidth={3}
                         d="M5 13l4 4L19 7"
                       />
-                    </svg>
+                    </motion.svg>
                   ) : (
                     <Icon className="w-5 h-5" />
                   )}
