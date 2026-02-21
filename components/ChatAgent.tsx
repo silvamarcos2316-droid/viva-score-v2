@@ -149,6 +149,35 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
             analysis: analysisData.analysis,
           })
 
+          // Generate personalized guide
+          try {
+            // Extract profession from conversation (first user message after greeting)
+            const userMessages = messages.filter(m => m.role === 'user')
+            const professionMessage = userMessages.length > 0 ? userMessages[0].content : ''
+
+            const guideResponse = await fetch('/api/generate-guide', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                profession: professionMessage, // First user response (profession)
+                classification: analysisData.analysis.classification,
+                conversationHistory: messages.map(m => `${m.role}: ${m.content}`).join('\n'),
+              }),
+            })
+
+            const guideData = await guideResponse.json()
+
+            if (guideData.success) {
+              // Store guide in sessionStorage
+              const guideId = Date.now().toString()
+              sessionStorage.setItem(`guide-${guideId}`, JSON.stringify(guideData.guide))
+              sessionStorage.setItem('latest-guide-id', guideId)
+            }
+          } catch (guideError) {
+            console.error('Guide generation error:', guideError)
+            // Don't block navigation if guide generation fails
+          }
+
           // Navigate to results
           router.push('/results')
         }, 2000)
