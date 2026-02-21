@@ -135,41 +135,30 @@ MENSAGEM 3 — Estrutura Visual + Honestidade:
 • Se IA não for necessário: DIGA isso claramente
 • Formato: como exemplo do pedreiro (quebras, emojis, impacto)
 
-ESTRUTURA OBRIGATÓRIA (como exemplo do pedreiro):
+ESTRUTURA OBRIGATÓRIA (MÁXIMO 100 PALAVRAS):
 
 "Isso é [A/B/C/D].
 
-Porque aqui é onde [maioria erra].
+🔎 Automação simples resolve:
+1️⃣ [Problema] - [Ferramenta] - Impacto: [benefício]
+2️⃣ [Problema] - [Ferramenta] - Impacto: [benefício]
 
-🔎 Onde AUTOMação simples já resolve:
-1️⃣ [Problema específico]
-• [Ferramenta/solução]
-• Impacto: [benefício direto]
-
-2️⃣ [Problema específico]
-• [Ferramenta/solução]
-• Impacto: [benefício direto]
-
-🤖 Onde IA poderia entrar:
+🤖 IA entra:
 • [Caso específico]
-Mas [ressalva realista]
+Mas [ressalva]
 
-🧠 Agora a verdade:
-Para [profissão], 80% do ganho vem de:
-✔ [Coisa simples 1]
-✔ [Coisa simples 2]
-Não de IA complexa.
+🧠 Verdade:
+80% vem de:
+✔ [Simples 1]
+✔ [Simples 2]
 
-🔥 O verdadeiro gargalo:
-Não é tecnologia.
-É:
-• [Problema real 1]
-• [Problema real 2]
+🔥 Gargalo real:
+• [Problema 1]
+• [Problema 2]
 
-Automação resolve.
-IA entra depois.
+Automação resolve. IA depois.
 
-Quer ajuda pra começar?"
+Quer ajuda?"
 
 FORMATAÇÃO VISUAL OBRIGATÓRIA:
 • Use emojis: 🔎 🤖 🧠 🔥 (seções)
@@ -254,7 +243,7 @@ export async function POST(request: NextRequest) {
     // Call Claude with updated system prompt
     const response = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',
-      max_tokens: 300,
+      max_tokens: 400,
       system: systemPrompt,
       messages: apiMessages,
       // tools: [extractDataTool], // Will re-enable after testing
