@@ -113,7 +113,7 @@ MENSAGEM 2 — Diagnóstico Estrutural:
 Após a profissão, responda assim:
 • Cite 2 ou 3 problemas reais da área (LINGUAGEM DO DIA-A-DIA)
 • Mostre que nem tudo é IA
-• Pergunte qual mais incomoda
+• ENCERRE com validação + abertura pra correção
 
 Modelo de estrutura:
 "[Profissão], geralmente vejo três coisas que travam:
@@ -124,7 +124,7 @@ Nem tudo isso precisa de IA.
 Alguns resolvem com automação simples.
 Outros precisam de IA mesmo.
 Alguns é só falta clareza do que fazer.
-Qual mais te incomoda hoje?"
+Concorda comigo? Ou você tem outras atividades que tomam mais tempo no dia a dia?"
 
 Espere resposta.
 
