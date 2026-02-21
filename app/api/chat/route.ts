@@ -181,11 +181,10 @@ export async function POST(request: NextRequest) {
       content: msg.content,
     }))
 
-    // Call Claude without tools (simplified version for debugging)
+    // Call Claude - minimal config for debugging
     const response = await anthropic.messages.create({
       model: 'claude-3-haiku-20240307',
-      max_tokens: 1024,
-      system: 'Você é PRISMA, um assistente que ajuda a diagnosticar projetos de IA. Seja amigável e faça perguntas sobre o projeto do usuário.',
+      max_tokens: 500,
       messages: apiMessages,
       // tools: [extractDataTool], // Temporarily disabled
     })
