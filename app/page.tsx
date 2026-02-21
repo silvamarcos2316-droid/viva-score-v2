@@ -66,7 +66,7 @@ export default function LandingPage() {
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-slate-300 mb-6 tracking-tight max-w-4xl mx-auto leading-tight">
-              Decida com a lógica de negócios AI-First.
+              Você precisa de IA, automação simples ou só organizar processo?
             </h1>
 
             <div className="text-6xl sm:text-7xl md:text-8xl font-bold text-white mb-8 tracking-tight">
@@ -77,14 +77,14 @@ export default function LandingPage() {
               variants={itemVariants}
               className="text-lg sm:text-xl md:text-2xl text-slate-400 mb-4 max-w-3xl mx-auto leading-relaxed"
             >
-              Framework estruturado com os critérios das empresas que constroem IA desde a fundação.
+              Sistema de clareza operacional. Classificamos seu problema e mostramos o caminho mais direto — sem hype.
             </motion.p>
 
             <motion.p
               variants={itemVariants}
               className="text-base md:text-lg text-blue-400 max-w-2xl mx-auto font-medium"
             >
-              Clareza objetiva. Decisão informada.
+              Nem tudo exige IA. Mas tudo exige clareza.
             </motion.p>
           </motion.div>
 
@@ -95,20 +95,20 @@ export default function LandingPage() {
           >
             <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-lg p-8">
               <BarChart3 className="w-10 h-10 text-blue-400 mb-4" />
-              <div className="text-3xl font-bold text-white mb-2">4 Dimensões</div>
-              <div className="text-slate-400">Análise estruturada em Visão, Integração, Viabilidade e Execução</div>
+              <div className="text-3xl font-bold text-white mb-2">4 Tipos</div>
+              <div className="text-slate-400">Classificamos se é (A) Automação simples (B) IA aplicada (C) Processo (D) Estrutura de decisão</div>
             </div>
 
             <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-lg p-8">
               <Shield className="w-10 h-10 text-blue-400 mb-4" />
-              <div className="text-3xl font-bold text-white mb-2">Método PRISMA</div>
-              <div className="text-slate-400">Framework proprietário para diagnóstico de projetos AI-First</div>
+              <div className="text-3xl font-bold text-white mb-2">Anti-Hype</div>
+              <div className="text-slate-400">Educação antes de venda. Se não precisar de IA, falamos na lata.</div>
             </div>
 
             <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-lg p-8">
               <Layers className="w-10 h-10 text-blue-400 mb-4" />
-              <div className="text-3xl font-bold text-white mb-2">Plataforma Contínua</div>
-              <div className="text-slate-400">Sistema evolutivo, não ferramenta pontual</div>
+              <div className="text-3xl font-bold text-white mb-2">Clareza Primeiro</div>
+              <div className="text-slate-400">Antes de pensar em tecnologia, clareza de processo vem primeiro</div>
             </div>
           </motion.div>
 
@@ -216,7 +216,7 @@ export default function LandingPage() {
               Por Que PRISMA Em Vez de ChatGPT?
             </h2>
             <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-              Não é só outro chatbot. É metodologia validada que transforma sua ideia em score acionável — em minutos.
+              ChatGPT te dá opiniões genéricas. PRISMA classifica seu problema e mostra se você precisa de IA ou não — de verdade.
             </p>
           </motion.div>
 
@@ -299,9 +299,9 @@ export default function LandingPage() {
             className="bg-slate-800/30 border border-slate-700 rounded-lg p-8 text-center"
           >
             <p className="text-lg text-slate-300 leading-relaxed">
-              <span className="text-blue-400 font-semibold">ChatGPT te dá opiniões.</span>{' '}
-              <span className="text-white font-semibold">PRISMA te dá diagnóstico estruturado</span>{' '}
-              com metodologia validada, score objetivo e roadmap acionável.
+              <span className="text-blue-400 font-semibold">ChatGPT te dá opiniões genéricas.</span>{' '}
+              <span className="text-white font-semibold">PRISMA classifica seu problema</span>{' '}
+              e diz se você precisa de automação simples, IA aplicada ou apenas organizar processo — sem hype.
             </p>
           </motion.div>
         </div>
@@ -320,7 +320,7 @@ export default function LandingPage() {
               O Que É PRISMA
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Plataforma de diagnóstico estratégico para empresas que buscam evolução estruturada na lógica AI-First
+              Sistema de clareza operacional que identifica se seu problema precisa de (A) Automação simples (B) IA aplicada (C) Organização de processo ou (D) Estrutura de decisão
             </p>
           </motion.div>
 
@@ -337,19 +337,19 @@ export default function LandingPage() {
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-700">Sistema estruturado de análise estratégica</span>
+                  <span className="text-slate-700">Filtro de clareza operacional</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-700">Instrumento executivo de decisão</span>
+                  <span className="text-slate-700">Sistema que classifica problemas antes de vender solução</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-700">Plataforma com ecossistema embutido</span>
+                  <span className="text-slate-700">Educação antes de venda</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-700">Framework de diagnóstico contínuo</span>
+                  <span className="text-slate-700">Recomendação honesta (mesmo que não seja IA)</span>
                 </li>
               </ul>
             </motion.div>
@@ -366,19 +366,19 @@ export default function LandingPage() {
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <div className="w-5 h-5 flex-shrink-0 mt-0.5"></div>
-                  <span className="text-slate-600">Mentoria ou grupo de networking</span>
+                  <span className="text-slate-600">Vendedor de IA disfarçado</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-5 h-5 flex-shrink-0 mt-0.5"></div>
-                  <span className="text-slate-600">Ferramenta hype de inteligência artificial</span>
+                  <span className="text-slate-600">Ferramenta hype que promete milagres</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-5 h-5 flex-shrink-0 mt-0.5"></div>
-                  <span className="text-slate-600">Curso ou conteúdo educacional</span>
+                  <span className="text-slate-600">Consultoria cara que enrola 6 meses</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-5 h-5 flex-shrink-0 mt-0.5"></div>
-                  <span className="text-slate-600">Solução pontual sem continuidade</span>
+                  <span className="text-slate-600">Chatbot genérico com resposta pronta</span>
                 </li>
               </ul>
             </motion.div>
@@ -396,34 +396,34 @@ export default function LandingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Método PRISMA
+              Como PRISMA Classifica
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Framework estruturado em quatro dimensões estratégicas
+              Identificamos se seu problema exige (A) Automação simples (B) IA aplicada (C) Processo claro ou (D) Estrutura de decisão
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                number: "01",
-                title: "Visão",
-                description: "Clareza sobre o problema central e proposta de valor. Validação da hipótese estratégica."
+                number: "A",
+                title: "Automação Simples",
+                description: "Tarefas repetitivas que não exigem análise. Resolvem com scripts, Zapier, Make — sem IA."
               },
               {
-                number: "02",
-                title: "Integração",
-                description: "Arquitetura técnica e integrações necessárias. Viabilidade de implementação."
+                number: "B",
+                title: "IA Aplicada",
+                description: "Problemas com variação e contexto. Exigem interpretação, não só repetição."
               },
               {
-                number: "03",
-                title: "Viabilidade",
-                description: "Recursos financeiros, ROI esperado e sustentabilidade econômica do projeto."
+                number: "C",
+                title: "Organização de Processo",
+                description: "Falta clareza no fluxo. Antes de automatizar, precisa organizar como funciona."
               },
               {
-                number: "04",
-                title: "Execução",
-                description: "Cronograma realista, riscos identificados e plano de ação estruturado."
+                number: "D",
+                title: "Estrutura de Decisão",
+                description: "Precisa de critérios claros para tomar decisões consistentes — não tecnologia."
               }
             ].map((item, index) => (
               <motion.div
@@ -517,27 +517,27 @@ export default function LandingPage() {
               Para Quem É PRISMA
             </h2>
             <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-              Plataforma desenvolvida para perfis empresariais que buscam clareza estratégica
+              Para quem não quer ficar no hype e precisa de clareza sobre o que realmente resolver primeiro
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: "Fundadores e CEOs",
-                description: "Validação estratégica antes de alocar recursos significativos em projetos de IA."
+                title: "Empresários",
+                description: "Quer saber se sua ideia precisa de IA ou se resolve com algo mais simples (e barato)."
               },
               {
-                title: "Líderes de Produto",
-                description: "Análise estruturada de viabilidade técnica e alinhamento estratégico."
+                title: "Gestores de Operação",
+                description: "Cansado de ver gargalo e não saber se compensa automatizar ou só organizar processo."
               },
               {
-                title: "Executivos de Inovação",
-                description: "Framework para apresentação de projetos com dados objetivos."
+                title: "Profissionais Liberais",
+                description: "Advogados, contadores, vendedores querendo saber se IA resolve de verdade ou é hype."
               },
               {
-                title: "Investidores e Advisors",
-                description: "Due diligence estruturada de projetos AI-First em estágio inicial."
+                title: "Time de Produto",
+                description: "Precisa validar se vale investir em IA ou se automação simples já resolve."
               }
             ].map((item, index) => (
               <motion.div
@@ -573,11 +573,11 @@ export default function LandingPage() {
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8">
-            Decida com Critérios AI-First
+            Clareza Antes de Tecnologia
           </h2>
 
           <p className="text-xl text-slate-400 mb-12">
-            Framework estruturado de análise em quatro dimensões. Clareza objetiva para decisões complexas.
+            Descubra se você precisa de IA, automação simples ou só organizar processo — em 3 minutos.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
