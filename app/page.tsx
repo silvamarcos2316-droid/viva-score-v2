@@ -1,608 +1,272 @@
 'use client'
 
-import { useEffect } from 'react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { TestimonialsSection } from '@/components/TestimonialsSection'
-import { trackPageView } from '@/lib/tracking'
-import {
-  BarChart3,
-  Shield,
-  Target,
-  TrendingUp,
-  ArrowRight,
-  CheckCircle,
-  Layers
-} from 'lucide-react'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { OnboardingSlide } from '@/components/onboarding/OnboardingSlide'
+import { PrismIcon } from '@/components/ui/PrismIcon'
+import { GlassCard } from '@/components/ui/GlassCard'
+import { motion, AnimatePresence } from 'framer-motion'
 
-export default function LandingPage() {
-  useEffect(() => {
-    trackPageView('/')
-  }, [])
+export default function HomePage() {
+  const router = useRouter()
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const totalSlides = 3
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08
-      }
+  const nextSlide = () => {
+    if (currentSlide < totalSlides - 1) {
+      setCurrentSlide(currentSlide + 1)
+    } else {
+      // Última tela: ir para chat
+      router.push('/calculadora-chat')
     }
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
+  const skipOnboarding = () => {
+    router.push('/calculadora-chat')
   }
 
   return (
-    <>
-      {/* Hero Section */}
-      <div className="relative min-h-screen bg-slate-950 py-16 md:py-24 px-4">
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(30,58,138,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(30,58,138,0.05)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
-
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-slate-950"></div>
-
+    <AnimatePresence mode="wait">
+      {currentSlide === 0 && (
         <motion.div
-          className="relative max-w-7xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          key="slide-0"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ duration: 0.3 }}
         >
-          {/* Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <div className="inline-flex items-center gap-3 mb-8">
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-blue-500"></div>
-              <span className="text-sm font-medium text-blue-400 tracking-wider uppercase">
-                Plataforma de Diagnóstico Estratégico
-              </span>
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-blue-500"></div>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-slate-300 mb-6 tracking-tight max-w-4xl mx-auto leading-tight">
-              Você precisa de IA, automação simples ou só organizar processo?
-            </h1>
-
-            <div className="text-6xl sm:text-7xl md:text-8xl font-bold text-white mb-8 tracking-tight">
-              PRISMA
-            </div>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-lg sm:text-xl md:text-2xl text-slate-400 mb-4 max-w-3xl mx-auto leading-relaxed"
-            >
-              Sistema de clareza operacional. Classificamos seu problema e mostramos o caminho mais direto — sem hype.
-            </motion.p>
-
-            <motion.p
-              variants={itemVariants}
-              className="text-base md:text-lg text-blue-400 max-w-2xl mx-auto font-medium"
-            >
-              Nem tudo exige IA. Mas tudo exige clareza.
-            </motion.p>
-          </motion.div>
-
-          {/* Value Props Grid */}
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-6xl mx-auto"
-          >
-            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-lg p-8">
-              <BarChart3 className="w-10 h-10 text-blue-400 mb-4" />
-              <div className="text-3xl font-bold text-white mb-2">4 Tipos</div>
-              <div className="text-slate-400">Classificamos se é (A) Automação simples (B) IA aplicada (C) Processo (D) Estrutura de decisão</div>
-            </div>
-
-            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-lg p-8">
-              <Shield className="w-10 h-10 text-blue-400 mb-4" />
-              <div className="text-3xl font-bold text-white mb-2">Anti-Hype</div>
-              <div className="text-slate-400">Educação antes de venda. Se não precisar de IA, falamos na lata.</div>
-            </div>
-
-            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-lg p-8">
-              <Layers className="w-10 h-10 text-blue-400 mb-4" />
-              <div className="text-3xl font-bold text-white mb-2">Clareza Primeiro</div>
-              <div className="text-slate-400">Antes de pensar em tecnologia, clareza de processo vem primeiro</div>
-            </div>
-          </motion.div>
-
-          {/* CTA Bifurcado */}
-          <motion.div variants={itemVariants} className="text-center mb-20">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {/* Path 1: Filtro de Lucidez - Violeta */}
-              <div className="bg-gradient-to-br from-violet-900/30 to-purple-900/30 backdrop-blur-sm border-2 border-violet-500/50 rounded-lg p-8 flex flex-col hover:border-violet-400 transition-all">
-                <div className="mb-4">
-                  <div className="text-violet-300 text-sm font-semibold mb-2 uppercase tracking-wider">Filtro de Lucidez</div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    Você está no hype ou tem problema real?
-                  </h3>
-                  <p className="text-slate-300 leading-relaxed mb-6">
-                    5 perguntas pra descobrir se você precisa de IA ou só de automação simples
-                  </p>
-                </div>
-                <Link
-                  href="/filtro-lucidez"
-                  className="mt-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg text-base font-semibold hover:from-violet-500 hover:to-purple-500 transition-all"
-                >
-                  Fazer o filtro
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <p className="text-slate-500 mt-3 text-xs text-center">
-                  A maioria não precisa • Recomendação honesta • 2 minutos
-                </p>
+          <OnboardingSlide slideNumber={0} totalSlides={totalSlides}>
+            {/* Header / Logo */}
+            <div className="flex flex-col items-center pt-8">
+              <div className="flex items-center justify-center w-12 h-12 bg-primary/20 rounded-xl mb-4 border border-primary/30">
+                <span className="material-symbols-outlined text-primary text-3xl">
+                  change_history
+                </span>
               </div>
+              <h2 className="text-slate-100 text-sm font-bold tracking-[0.3em] uppercase">
+                PRISMA
+              </h2>
+            </div>
 
-              {/* Path 2: PRISMA Full - Rainbow */}
-              <div className="bg-gradient-to-br from-blue-900/30 via-green-900/30 to-yellow-900/30 backdrop-blur-sm border-2 border-blue-500/50 rounded-lg p-8 flex flex-col hover:border-green-400 transition-all">
-                <div className="mb-6">
-                  <div className="text-blue-300 text-sm font-semibold mb-2 uppercase tracking-wider">PRISMA Full</div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    Análise completa em 4 dimensões
-                  </h3>
-                  <p className="text-slate-300 leading-relaxed mb-6">
-                    Validação técnica e estratégica com score objetivo 0-40
-                  </p>
-                </div>
+            {/* Manifesto Content */}
+            <div className="flex flex-col items-center text-center space-y-8">
+              <h1 className="text-slate-100 text-4xl sm:text-5xl font-extrabold leading-[1.1] tracking-tight mb-6 font-display">
+                Nem tudo é IA.<br/>
+                <span className="text-primary italic">Às vezes</span> é processo.
+              </h1>
 
-                {/* Choice: Conversational or Form */}
-                <div className="mt-auto space-y-3">
-                  <Link
-                    href="/calculadora-chat"
-                    className="block w-full px-6 py-4 bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 text-white rounded-lg text-base font-semibold hover:from-blue-500 hover:via-green-500 hover:to-yellow-500 transition-all text-center"
-                  >
-                    <div className="flex items-center justify-center gap-3">
-                      <span>💬 Começar Diagnóstico</span>
-                      <ArrowRight className="w-5 h-5" />
+              <p className="text-slate-400 text-lg leading-relaxed max-w-[280px]">
+                O sistema de clareza operacional para decidir entre automação, IA ou processos.
+              </p>
+
+              {/* Prism Visual */}
+              <div className="w-full aspect-square flex items-center justify-center relative py-8">
+                <PrismIcon size="md" animate={true} />
+              </div>
+            </div>
+
+            {/* Footer Actions */}
+            <div>
+              <button
+                onClick={nextSlide}
+                className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-5 px-8 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center group mb-4"
+              >
+                <span className="text-lg">Continuar</span>
+                <span className="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">
+                  arrow_forward
+                </span>
+              </button>
+              <button
+                onClick={skipOnboarding}
+                className="w-full text-slate-500 hover:text-slate-300 text-sm transition-colors"
+              >
+                Pular introdução
+              </button>
+            </div>
+          </OnboardingSlide>
+        </motion.div>
+      )}
+
+      {currentSlide === 1 && (
+        <motion.div
+          key="slide-1"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ duration: 0.3 }}
+        >
+          <OnboardingSlide slideNumber={1} totalSlides={totalSlides}>
+            {/* Header */}
+            <div className="flex flex-col items-center pt-8">
+              <div className="flex items-center justify-center w-12 h-12 bg-primary/20 rounded-xl mb-4 border border-primary/30">
+                <span className="material-symbols-outlined text-primary text-3xl">
+                  warning
+                </span>
+              </div>
+            </div>
+
+            {/* Problem Content */}
+            <div className="flex flex-col items-center text-center space-y-8">
+              <h1 className="text-slate-100 text-3xl sm:text-4xl font-extrabold leading-[1.1] tracking-tight mb-6 font-display">
+                A maioria dos projetos<br/>
+                <span className="text-red-400">falha antes de começar</span>
+              </h1>
+
+              {/* 3 Problems */}
+              <div className="w-full space-y-4 max-w-[350px]">
+                <GlassCard className="p-4 text-left">
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-400 text-2xl">❌</span>
+                    <div>
+                      <p className="text-slate-200 text-sm leading-relaxed">
+                        Compram IA antes de validar se o problema realmente existe
+                      </p>
                     </div>
-                    <p className="text-sm text-white/70 mt-1">2 minutos • Conversacional</p>
-                  </Link>
-                </div>
+                  </div>
+                </GlassCard>
 
-                <p className="text-slate-500 mt-4 text-xs text-center">
-                  Visão • Integração • Viabilidade • Execução • 3 minutos
-                </p>
+                <GlassCard className="p-4 text-left">
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-400 text-2xl">❌</span>
+                    <div>
+                      <p className="text-slate-200 text-sm leading-relaxed">
+                        Automatizam processo quebrado (garbage in, garbage out)
+                      </p>
+                    </div>
+                  </div>
+                </GlassCard>
+
+                <GlassCard className="p-4 text-left">
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-400 text-2xl">❌</span>
+                    <div>
+                      <p className="text-slate-200 text-sm leading-relaxed">
+                        Ignoram integração com sistemas atuais (vira Frankenstein)
+                      </p>
+                    </div>
+                  </div>
+                </GlassCard>
+              </div>
+
+              <p className="text-slate-400 text-base">
+                Resultado: <span className="text-red-400 font-semibold">R$ 50k+ jogados fora</span> sem gerar valor.
+              </p>
+            </div>
+
+            {/* Footer Actions */}
+            <div>
+              <button
+                onClick={nextSlide}
+                className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-5 px-8 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center group mb-4"
+              >
+                <span className="text-lg">Entender Como Evitar</span>
+                <span className="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">
+                  arrow_forward
+                </span>
+              </button>
+              <button
+                onClick={skipOnboarding}
+                className="w-full text-slate-500 hover:text-slate-300 text-sm transition-colors"
+              >
+                Pular introdução
+              </button>
+            </div>
+          </OnboardingSlide>
+        </motion.div>
+      )}
+
+      {currentSlide === 2 && (
+        <motion.div
+          key="slide-2"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ duration: 0.3 }}
+        >
+          <OnboardingSlide slideNumber={2} totalSlides={totalSlides}>
+            {/* Header */}
+            <div className="flex flex-col items-center pt-8">
+              <div className="flex items-center justify-center w-12 h-12 bg-primary/20 rounded-xl mb-4 border border-primary/30">
+                <span className="material-symbols-outlined text-primary text-3xl">
+                  lightbulb
+                </span>
               </div>
             </div>
-          </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto border-t border-slate-800 pt-12"
-          >
-            <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">150+</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Diagnósticos Realizados</div>
+            {/* Solution Content */}
+            <div className="flex flex-col items-center text-center space-y-6">
+              <h1 className="text-slate-100 text-3xl sm:text-4xl font-extrabold leading-[1.1] tracking-tight mb-4 font-display">
+                <span className="text-primary">PRISMA</span> identifica<br/>
+                o que você realmente precisa
+              </h1>
+
+              <p className="text-slate-400 text-base max-w-[300px] leading-relaxed">
+                Framework V.I.V.A. em 4 dimensões críticas:
+              </p>
+
+              {/* V.I.V.A. Framework */}
+              <div className="grid grid-cols-2 gap-3 w-full max-w-[350px]">
+                <GlassCard className="p-4">
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <span className="material-symbols-outlined text-blue-400 text-3xl">
+                      visibility
+                    </span>
+                    <span className="text-white font-semibold text-sm">Visão</span>
+                    <span className="text-slate-400 text-xs">Problema está claro?</span>
+                  </div>
+                </GlassCard>
+
+                <GlassCard className="p-4">
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <span className="material-symbols-outlined text-cyan-400 text-3xl">
+                      hub
+                    </span>
+                    <span className="text-white font-semibold text-sm">Integração</span>
+                    <span className="text-slate-400 text-xs">Conecta com atual?</span>
+                  </div>
+                </GlassCard>
+
+                <GlassCard className="p-4">
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <span className="material-symbols-outlined text-emerald-400 text-3xl">
+                      paid
+                    </span>
+                    <span className="text-white font-semibold text-sm">Viabilidade</span>
+                    <span className="text-slate-400 text-xs">ROI faz sentido?</span>
+                  </div>
+                </GlassCard>
+
+                <GlassCard className="p-4">
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <span className="material-symbols-outlined text-amber-400 text-3xl">
+                      bolt
+                    </span>
+                    <span className="text-white font-semibold text-sm">Execução</span>
+                    <span className="text-slate-400 text-xs">Tem recursos?</span>
+                  </div>
+                </GlassCard>
+              </div>
+
+              <p className="text-slate-300 text-sm max-w-[300px]">
+                Em <span className="text-primary font-semibold">2 minutos</span>, você sabe se precisa de IA, automação simples ou só organização.
+              </p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">4</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Dimensões de Análise</div>
+
+            {/* Footer Actions */}
+            <div>
+              <button
+                onClick={nextSlide}
+                className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-5 px-8 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center group"
+              >
+                <span className="text-lg">Começar Diagnóstico</span>
+                <span className="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">
+                  arrow_forward
+                </span>
+              </button>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">92%</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Índice de Assertividade</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">0-40</div>
-              <div className="text-sm text-slate-400 uppercase tracking-wider">Escala de Pontuação</div>
-            </div>
-          </motion.div>
+          </OnboardingSlide>
         </motion.div>
-      </div>
-
-      {/* Por Que PRISMA vs ChatGPT/Gemini */}
-      <div className="bg-slate-900 py-20 md:py-32 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Por Que PRISMA Em Vez de ChatGPT?
-            </h2>
-            <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-              ChatGPT te dá opiniões genéricas. PRISMA classifica seu problema e mostra se você precisa de IA ou não — de verdade.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {/* ChatGPT/Gemini Column */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-slate-800/50 border border-slate-700 rounded-lg p-8"
-            >
-              <h3 className="text-2xl font-bold text-slate-300 mb-6 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-slate-500"></div>
-                ChatGPT / Gemini / LLMs
-              </h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3 text-slate-400">
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
-                  <span>Resposta genérica e não estruturada</span>
-                </li>
-                <li className="flex items-start gap-3 text-slate-400">
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
-                  <span>Opinião baseada em dados gerais da internet</span>
-                </li>
-                <li className="flex items-start gap-3 text-slate-400">
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
-                  <span>Sem baseline de comparação com mercado</span>
-                </li>
-                <li className="flex items-start gap-3 text-slate-400">
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
-                  <span>Resposta em texto livre (não apresentável)</span>
-                </li>
-                <li className="flex items-start gap-3 text-slate-400">
-                  <div className="w-1.5 h-1.5 rounded-full bg-slate-600 mt-2 flex-shrink-0"></div>
-                  <span>Análise pontual sem continuidade</span>
-                </li>
-              </ul>
-            </motion.div>
-
-            {/* PRISMA Column */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-blue-900/40 via-green-900/40 to-yellow-900/40 border-2 border-blue-500/50 rounded-lg p-8"
-            >
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-                PRISMA Score
-              </h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3 text-slate-200">
-                  <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                  <span><strong className="text-white">Framework proprietário</strong> validado em 150+ projetos</span>
-                </li>
-                <li className="flex items-start gap-3 text-slate-200">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span><strong className="text-white">Score 0-40 objetivo</strong> e comparável entre projetos</span>
-                </li>
-                <li className="flex items-start gap-3 text-slate-200">
-                  <CheckCircle className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-                  <span><strong className="text-white">Benchmarking implícito</strong> vs mercado brasileiro</span>
-                </li>
-                <li className="flex items-start gap-3 text-slate-200">
-                  <CheckCircle className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
-                  <span><strong className="text-white">Relatório executivo</strong> apresentável para stakeholders</span>
-                </li>
-                <li className="flex items-start gap-3 text-slate-200">
-                  <CheckCircle className="w-5 h-5 text-violet-400 flex-shrink-0 mt-0.5" />
-                  <span><strong className="text-white">Plataforma evolutiva</strong> com histórico e acompanhamento</span>
-                </li>
-              </ul>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-slate-800/30 border border-slate-700 rounded-lg p-8 text-center"
-          >
-            <p className="text-lg text-slate-300 leading-relaxed">
-              <span className="text-blue-400 font-semibold">ChatGPT te dá opiniões genéricas.</span>{' '}
-              <span className="text-white font-semibold">PRISMA classifica seu problema</span>{' '}
-              e diz se você precisa de automação simples, IA aplicada ou apenas organizar processo — sem hype.
-            </p>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* O Que É PRISMA */}
-      <div className="bg-white py-20 md:py-32 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              O Que É PRISMA
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Sistema de clareza operacional que identifica se seu problema precisa de (A) Automação simples (B) IA aplicada (C) Organização de processo ou (D) Estrutura de decisão
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="border-l-4 border-blue-600 pl-8"
-            >
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                PRISMA É
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-700">Filtro de clareza operacional</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-700">Sistema que classifica problemas antes de vender solução</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-700">Educação antes de venda</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-slate-700">Recomendação honesta (mesmo que não seja IA)</span>
-                </li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="border-l-4 border-slate-300 pl-8"
-            >
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                PRISMA NÃO É
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <div className="w-5 h-5 flex-shrink-0 mt-0.5"></div>
-                  <span className="text-slate-600">Vendedor de IA disfarçado</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-5 h-5 flex-shrink-0 mt-0.5"></div>
-                  <span className="text-slate-600">Ferramenta hype que promete milagres</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-5 h-5 flex-shrink-0 mt-0.5"></div>
-                  <span className="text-slate-600">Consultoria cara que enrola 6 meses</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-5 h-5 flex-shrink-0 mt-0.5"></div>
-                  <span className="text-slate-600">Chatbot genérico com resposta pronta</span>
-                </li>
-              </ul>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* Método PRISMA */}
-      <div className="bg-slate-50 py-20 md:py-32 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Como PRISMA Classifica
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Identificamos se seu problema exige (A) Automação simples (B) IA aplicada (C) Processo claro ou (D) Estrutura de decisão
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                number: "A",
-                title: "Automação Simples",
-                description: "Tarefas repetitivas que não exigem análise. Resolvem com scripts, Zapier, Make — sem IA."
-              },
-              {
-                number: "B",
-                title: "IA Aplicada",
-                description: "Problemas com variação e contexto. Exigem interpretação, não só repetição."
-              },
-              {
-                number: "C",
-                title: "Organização de Processo",
-                description: "Falta clareza no fluxo. Antes de automatizar, precisa organizar como funciona."
-              },
-              {
-                number: "D",
-                title: "Estrutura de Decisão",
-                description: "Precisa de critérios claros para tomar decisões consistentes — não tecnologia."
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white border border-slate-200 rounded-sm p-8"
-              >
-                <div className="text-blue-600 text-lg font-bold mb-4">{item.number}</div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                  {item.title}
-                </h3>
-                <p className="text-slate-600 leading-relaxed">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Como Funciona */}
-      <div className="bg-white py-20 md:py-32 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
-              Como Funciona o Diagnóstico
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              {
-                step: "1",
-                title: "Entrada Estruturada",
-                description: "Responda questões objetivas sobre as quatro dimensões estratégicas do seu projeto."
-              },
-              {
-                step: "2",
-                title: "Análise Sistemática",
-                description: "Sistema processa informações através do framework PRISMA, identificando padrões e riscos."
-              },
-              {
-                step: "3",
-                title: "Relatório Executivo",
-                description: "Receba pontuação objetiva (0-40), análise detalhada e recomendações estruturadas."
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className="relative"
-              >
-                <div className="absolute -top-4 -left-4 w-16 h-16 bg-blue-600 text-white text-2xl font-bold flex items-center justify-center">
-                  {item.step}
-                </div>
-                <div className="bg-slate-50 border border-slate-200 rounded-sm p-8 pt-12">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Para Quem É */}
-      <div className="bg-slate-950 py-20 md:py-32 px-4">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Para Quem É PRISMA
-            </h2>
-            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-              Para quem não quer ficar no hype e precisa de clareza sobre o que realmente resolver primeiro
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Empresários",
-                description: "Quer saber se sua ideia precisa de IA ou se resolve com algo mais simples (e barato)."
-              },
-              {
-                title: "Gestores de Operação",
-                description: "Cansado de ver gargalo e não saber se compensa automatizar ou só organizar processo."
-              },
-              {
-                title: "Profissionais Liberais",
-                description: "Advogados, contadores, vendedores querendo saber se IA resolve de verdade ou é hype."
-              },
-              {
-                title: "Time de Produto",
-                description: "Precisa validar se vale investir em IA ou se automação simples já resolve."
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-slate-900/50 border border-slate-800 rounded-sm p-8"
-              >
-                <Target className="w-8 h-8 text-blue-400 mb-4" />
-                <h3 className="text-xl font-bold text-white mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-slate-400 leading-relaxed">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Testimonials */}
-      <TestimonialsSection />
-
-      {/* Final CTA */}
-      <div className="bg-slate-950 border-t border-slate-800 py-20 md:py-32 px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8">
-            Clareza Antes de Tecnologia
-          </h2>
-
-          <p className="text-xl text-slate-400 mb-12">
-            Descubra se você precisa de IA, automação simples ou só organizar processo — em 3 minutos.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-            <Link
-              href="/calculadora-chat"
-              className="inline-flex items-center gap-3 px-12 py-6 bg-blue-600 text-white rounded-sm text-xl font-semibold hover:bg-blue-700 transition-all border border-blue-500"
-            >
-              💬 Começar Diagnóstico
-              <ArrowRight className="w-6 h-6" />
-            </Link>
-          </div>
-
-          <p className="text-sm text-slate-500 mb-8">
-            ✨ Diagnóstico conversacional com IA em 2 minutos
-          </p>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-8 text-slate-500 text-sm">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4" />
-              <span>Sem cadastro</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4" />
-              <span>Score 0-40</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4" />
-              <span>3 minutos</span>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </>
+      )}
+    </AnimatePresence>
   )
 }
