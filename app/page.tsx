@@ -157,17 +157,10 @@ export default function LandingPage() {
                     className="block w-full px-6 py-4 bg-gradient-to-r from-blue-600 via-green-600 to-yellow-600 text-white rounded-lg text-base font-semibold hover:from-blue-500 hover:via-green-500 hover:to-yellow-500 transition-all text-center"
                   >
                     <div className="flex items-center justify-center gap-3">
-                      <span>💬 Conversar com IA</span>
+                      <span>💬 Começar Diagnóstico</span>
                       <ArrowRight className="w-5 h-5" />
                     </div>
-                    <p className="text-sm text-white/70 mt-1">Recomendado • Mais natural</p>
-                  </Link>
-
-                  <Link
-                    href="/calculator"
-                    className="block w-full px-6 py-3 bg-slate-800/50 border border-slate-700 text-slate-300 rounded-lg text-sm font-medium hover:bg-slate-700/50 hover:border-slate-600 transition-all text-center"
-                  >
-                    Usar formulário tradicional
+                    <p className="text-sm text-white/70 mt-1">2 minutos • Conversacional</p>
                   </Link>
                 </div>
 
@@ -585,19 +578,13 @@ export default function LandingPage() {
               href="/calculadora-chat"
               className="inline-flex items-center gap-3 px-12 py-6 bg-blue-600 text-white rounded-sm text-xl font-semibold hover:bg-blue-700 transition-all border border-blue-500"
             >
-              💬 Conversar com IA
+              💬 Começar Diagnóstico
               <ArrowRight className="w-6 h-6" />
-            </Link>
-            <Link
-              href="/calculator"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-slate-800 text-slate-300 rounded-sm text-base font-medium hover:bg-slate-700 transition-all border border-slate-700"
-            >
-              Usar formulário
             </Link>
           </div>
 
           <p className="text-sm text-slate-500 mb-8">
-            ✨ Novo: Converse naturalmente com nosso assistente de IA
+            ✨ Diagnóstico conversacional com IA em 2 minutos
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-8 text-slate-500 text-sm">

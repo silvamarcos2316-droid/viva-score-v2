@@ -550,7 +550,7 @@ export default function SinceraoPage() {
                         Valide viabilidade técnica e estratégica
                       </p>
                       <Link
-                        href="/calculator"
+                        href="/calculadora-chat"
                         className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold"
                       >
                         Fazer V.I.V.A.
@@ -589,7 +589,7 @@ export default function SinceraoPage() {
                       Diagnóstico estruturado em 4 dimensões • Score 0-40 • 3 minutos
                     </p>
                     <Link
-                      href="/calculator"
+                      href="/calculadora-chat"
                       className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-sm text-lg font-semibold hover:bg-blue-700 transition-all border border-blue-500"
                     >
                       Fazer diagnóstico V.I.V.A.

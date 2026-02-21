@@ -20,7 +20,7 @@ export default function ResultsPage() {
   useEffect(() => {
     const stored = sessionStorage.getItem('prisma-analysis')
     if (!stored) {
-      router.push('/calculator')
+      router.push('/')
       return
     }
     setAnalysis(JSON.parse(stored))
