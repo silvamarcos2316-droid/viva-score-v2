@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import { trackEmailCapture, trackAnalysisSubmission } from '@/lib/tracking'
 import { TypingIndicator } from './TypingIndicator'
 import { StreamingText } from './StreamingText'
+import Confetti from 'react-confetti'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -25,7 +26,7 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
     {
       role: 'assistant',
       content:
-        'Olá! 👋 Sou o PRISMA.\n\nA maioria das pessoas que testam IA falha pelos mesmos 3 motivos. Em 2 minutos, vou diagnosticar qual é o seu.\n\nPrimeiro, qual sua profissão?',
+        'Olá! 👋 Sou o PRISMA.\nA maioria das pessoas que testam IA falha pelos mesmos 3 motivos. Em 2 minutos, vou diagnosticar qual é o seu.\nPrimeiro, qual sua profissão?',
       timestamp: new Date(),
     },
   ])
@@ -35,6 +36,7 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
   const [formData, setFormData] = useState<Partial<FormData>>({})
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState<string | null>(null)
+  const [showConfetti, setShowConfetti] = useState(false)
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -110,33 +112,46 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
 
       // If conversation is complete, trigger analysis
       if (data.completed) {
-        setIsAnalyzing(true)
-        const finalData = { ...formData, ...data.extractedData } as FormData
+        setShowConfetti(true)
 
-        // Call analyze API
-        const analysisResponse = await fetch('/api/analyze', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(finalData),
-        })
-
-        const analysisData = await analysisResponse.json()
-
-        if (!analysisData.success) {
-          throw new Error(analysisData.error || 'Erro ao gerar diagnóstico')
+        // Celebration message
+        const celebrationMessage: Message = {
+          role: 'assistant',
+          content: '🎉 Diagnóstico completo! Gerando seu relatório...',
+          timestamp: new Date(),
         }
+        setMessages((prev) => [...prev, celebrationMessage])
 
-        // Store results in sessionStorage
-        sessionStorage.setItem('prisma-analysis', JSON.stringify(analysisData.analysis))
+        // Wait 2 seconds with confetti before analyzing
+        setTimeout(async () => {
+          setIsAnalyzing(true)
+          const finalData = { ...formData, ...data.extractedData } as FormData
 
-        // Track analysis submission
-        trackAnalysisSubmission({
-          formData: finalData as any,
-          analysis: analysisData.analysis,
-        })
+          // Call analyze API
+          const analysisResponse = await fetch('/api/analyze', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(finalData),
+          })
 
-        // Navigate to results
-        router.push('/results')
+          const analysisData = await analysisResponse.json()
+
+          if (!analysisData.success) {
+            throw new Error(analysisData.error || 'Erro ao gerar diagnóstico')
+          }
+
+          // Store results in sessionStorage
+          sessionStorage.setItem('prisma-analysis', JSON.stringify(analysisData.analysis))
+
+          // Track analysis submission
+          trackAnalysisSubmission({
+            formData: finalData as any,
+            analysis: analysisData.analysis,
+          })
+
+          // Navigate to results
+          router.push('/results')
+        }, 2000)
       }
     } catch (err) {
       console.error('Chat error:', err)
@@ -172,6 +187,15 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
 
   return (
     <div className="flex flex-col h-full">
+      {/* Confetti celebration */}
+      {showConfetti && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          recycle={false}
+          numberOfPieces={200}
+        />
+      )}
       {/* Progress Bar */}
       <div className="bg-slate-900 border-b border-slate-800 px-4 py-3">
         <div className="max-w-4xl mx-auto">
@@ -239,7 +263,7 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
                     }`}
                   >
                     {message.role === 'assistant' ? (
-                      <StreamingText text={message.content} speed={25} />
+                      <StreamingText text={message.content} speed={15} />
                     ) : (
                       <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
                     )}
