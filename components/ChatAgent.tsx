@@ -25,7 +25,7 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
     {
       role: 'assistant',
       content:
-        'Olá! 👋 Sou o PRISMA.\n\nA maioria das pessoas que testam IA falha pelos mesmos 3 motivos.\n\nEm 2 minutos, vou diagnosticar qual é o seu.\n\nPrimeiro, qual sua profissão?',
+        'Olá! 👋 Sou o PRISMA.\n\nA maioria das pessoas que testam IA falha pelos mesmos 3 motivos. Em 2 minutos, vou diagnosticar qual é o seu.\n\nPrimeiro, qual sua profissão?',
       timestamp: new Date(),
     },
   ])
@@ -239,7 +239,7 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
                     }`}
                   >
                     {message.role === 'assistant' ? (
-                      <StreamingText text={message.content} speed={50} />
+                      <StreamingText text={message.content} speed={25} />
                     ) : (
                       <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
                     )}
