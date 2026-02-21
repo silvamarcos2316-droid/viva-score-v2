@@ -149,6 +149,10 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
       setMessages((prev) => [...prev, errorMessage])
     } finally {
       setIsLoading(false)
+      // Auto-focus input after response
+      setTimeout(() => {
+        inputRef.current?.focus()
+      }, 100)
     }
   }
 
