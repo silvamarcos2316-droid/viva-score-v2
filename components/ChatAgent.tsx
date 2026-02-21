@@ -6,6 +6,8 @@ import { Send, Sparkles, Loader2, Bot, User } from 'lucide-react'
 import { FormData } from '@/lib/types'
 import { useRouter } from 'next/navigation'
 import { trackEmailCapture, trackAnalysisSubmission } from '@/lib/tracking'
+import { TypingIndicator } from './TypingIndicator'
+import { StreamingText } from './StreamingText'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -23,7 +25,7 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
     {
       role: 'assistant',
       content:
-        'Olá! 👋 Sou o PRISMA, seu assistente de diagnóstico de projetos de IA. Vou fazer algumas perguntas sobre seu projeto para gerar um diagnóstico estruturado usando o framework V.I.V.A. Vamos começar?',
+        'Olá! 👋 Sou o PRISMA.\n\nA maioria das pessoas que testam IA falha pelos mesmos 3 motivos.\n\nEm 2 minutos, vou diagnosticar qual é o seu.\n\nPrimeiro, qual sua profissão?',
       timestamp: new Date(),
     },
   ])
@@ -195,27 +197,33 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
             {messages.map((message, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.4,
+                  ease: "easeOut",
+                  delay: index > 0 ? 0.05 : 0
+                }}
                 className={`flex gap-3 ${
                   message.role === 'user' ? 'flex-row-reverse' : 'flex-row'
                 }`}
               >
                 {/* Avatar */}
-                <div
+                <motion.div
                   className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
                     message.role === 'assistant'
                       ? 'bg-blue-600/20 text-blue-400'
                       : 'bg-slate-700 text-slate-300'
                   }`}
+                  animate={message.role === 'assistant' ? { scale: [1, 1.08, 1] } : undefined}
+                  transition={message.role === 'assistant' ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : undefined}
                 >
                   {message.role === 'assistant' ? (
                     <Bot className="w-5 h-5" />
                   ) : (
                     <User className="w-5 h-5" />
                   )}
-                </div>
+                </motion.div>
 
                 {/* Message Bubble */}
                 <div
@@ -230,7 +238,11 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
                         : 'bg-blue-600 text-white'
                     }`}
                   >
-                    <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                    {message.role === 'assistant' ? (
+                      <StreamingText text={message.content} speed={50} />
+                    ) : (
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                    )}
                   </div>
                   <p className="text-xs text-slate-500 mt-1 px-1">
                     {message.timestamp.toLocaleTimeString('pt-BR', {
@@ -250,12 +262,16 @@ export function ChatAgent({ onComplete }: ChatAgentProps) {
               animate={{ opacity: 1 }}
               className="flex gap-3"
             >
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center">
+              <motion.div
+                className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600/20 text-blue-400 flex items-center justify-center"
+                animate={{ scale: [1, 1.08, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <Bot className="w-5 h-5" />
-              </div>
+              </motion.div>
               <div className="bg-slate-800 px-4 py-3 rounded-lg">
                 <div className="flex items-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
+                  <TypingIndicator />
                   <span className="text-sm text-slate-400">
                     {isAnalyzing ? 'Gerando seu diagnóstico...' : 'Digitando...'}
                   </span>
